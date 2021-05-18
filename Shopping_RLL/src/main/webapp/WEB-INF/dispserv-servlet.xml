@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.mph.*"></context:component-scan>
+	<context:property-placeholder
+		location="classpath:database.properties" />
+	<tx:annotation-driven />
+	<mvc:annotation-driven />
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<context:property-placeholder
+		location="classpath:log4j.properties" />
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.mph.entity.ProductCart</value>
+				<value>com.mph.entity.Address</value>
+
+				<value>com.mph.entity.Customer</value>
+				<value>com.mph.entity.Order</value>
+
+				<value>com.mph.entity.Product</value>
+				<value>com.mph.entity.ProductCategory</value>
+
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="address" class="com.mph.entity.Address" />
+
+	<bean id="order" class="com.mph.entity.Order" />
+
+	<bean id="product" class="com.mph.entity.Product" />
+	<bean id="productCategory" class="com.mph.entity.ProductCategory" />
+
+
+	<bean id="productCart" class="com.mph.entity.ProductCart" />
+	<bean id="productCartDao"
+		class="com.mph.dao.ProductCartDaoImplementation" />
+	<bean id="customer" class="com.mph.entity.Customer" />
+	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
+
+
+</beans>
