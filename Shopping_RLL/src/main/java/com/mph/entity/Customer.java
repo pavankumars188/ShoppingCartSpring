@@ -32,13 +32,19 @@ public class Customer {
 
 	@Column
 	private java.sql.Date DateOfBirth;
+	
+	@Column
+	private String password;
+	@Column
+	private String passwordConfirm;
+	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Customer(int customerid, String customerFirstname, String customerLastname, String gender, String email,
-			Set<Order> orders, Date dateOfBirth) {
+			Set<Order> orders, Date dateOfBirth, String password, String passwordConfirm) {
 		super();
 		this.customerid = customerid;
 		this.customerFirstname = customerFirstname;
@@ -47,59 +53,89 @@ public class Customer {
 		this.email = email;
 		this.orders = orders;
 		DateOfBirth = dateOfBirth;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public int getCustomerid() {
 		return customerid;
 	}
+
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
 	}
-	public Set<Order> getOrders() {
-        return orders;
-    }
 
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
 	public String getCustomerFirstname() {
 		return customerFirstname;
 	}
+
 	public void setCustomerFirstname(String customerFirstname) {
 		this.customerFirstname = customerFirstname;
 	}
+
 	public String getCustomerLastname() {
 		return customerLastname;
 	}
+
 	public void setCustomerLastname(String customerLastname) {
 		this.customerLastname = customerLastname;
 	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
 	public java.sql.Date getDateOfBirth() {
 		return DateOfBirth;
 	}
+
 	public void setDateOfBirth(java.sql.Date dateOfBirth) {
 		DateOfBirth = dateOfBirth;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	@Override
 	public String toString() {
 		return "Customer [customerid=" + customerid + ", customerFirstname=" + customerFirstname + ", customerLastname="
 				+ customerLastname + ", gender=" + gender + ", email=" + email + ", orders=" + orders + ", DateOfBirth="
-				+ DateOfBirth + "]";
+				+ DateOfBirth + ", password=" + password + ", passwordConfirm=" + passwordConfirm + "]";
 	}
+	
 	
 	
 }

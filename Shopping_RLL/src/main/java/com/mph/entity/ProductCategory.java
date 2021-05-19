@@ -11,6 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 @Entity
 @Table(name="product_category")
 public class ProductCategory {
@@ -20,7 +26,7 @@ public class ProductCategory {
     @Column(name="id")
     private Long pcId;
 
-    
+    @Column
     private String categoryName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

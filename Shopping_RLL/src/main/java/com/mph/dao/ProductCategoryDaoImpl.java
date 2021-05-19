@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.mph.entity.ProductCategory;
 
+/**
+ * 
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 @Repository
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Autowired
@@ -45,11 +51,15 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	}
 
 	@Override
-	public ProductCategory searchProductCategory(String categoryName) {
-		return (ProductCategory)getSession().get(ProductCategory.class,categoryName);
-		// TODO Auto-generated method stub
-		
+	public List<ProductCategory> searchCategory(String category) {
+		Query query = getSession().createQuery("select me from product_category me where categoryName=:category");
+		query.setParameter("category", category);
+		List<ProductCategory> empList = query.list();
+		System.out.println(empList);
+		return empList;
 	}
+
+	
 
 	
 }

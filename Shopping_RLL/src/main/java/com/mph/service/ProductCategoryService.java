@@ -1,19 +1,16 @@
-package com.mph.dao;
-
-import java.util.List;
-
-
-import com.mph.entity.ProductCategory;
-
-
+package com.mph.service;
 /**
  * 
  * 
  * @author Prasanna_Palanivel
  *
  */
+import java.util.List;
 
-public interface ProductCategoryDao {
+import com.mph.dao.ProductCategoryDao;
+import com.mph.entity.ProductCategory;
+
+public interface ProductCategoryService {
 	public void createProductCategory(ProductCategoryDao productCategory);
 	public List<ProductCategory> productCategoryList();
 	public List<ProductCategory> deleteProductCategory(int pcid);

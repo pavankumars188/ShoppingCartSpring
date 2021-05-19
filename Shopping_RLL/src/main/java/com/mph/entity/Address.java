@@ -3,7 +3,12 @@ package com.mph.entity;
 
 import javax.persistence.*;
 
-
+/**
+ * 
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 @Entity
 @Table(name = "address")
 public class Address {

@@ -4,6 +4,12 @@ package com.mph.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * 
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 @Entity
 @Table(name = "Product_Cart")
 public class ProductCart {
