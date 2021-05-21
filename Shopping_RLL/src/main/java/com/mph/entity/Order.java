@@ -57,12 +57,34 @@ public class Order {
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
     private Address shippingAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
-    private Address billingAddress;
 
 
-    public void add(ProductCart item) {
+    public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Order(Long id, String orderTrackingNumber, int totalPrice, int totalQuantity, String status,
+			Date dateCreated, Date lastUpdated, Set<ProductCart> orderItems, Customer customer,
+			Address shippingAddress) {
+		super();
+		this.id = id;
+		this.orderTrackingNumber = orderTrackingNumber;
+		this.totalPrice = totalPrice;
+		this.totalQuantity = totalQuantity;
+		this.status = status;
+		this.dateCreated = dateCreated;
+		this.lastUpdated = lastUpdated;
+		this.orderItems = orderItems;
+		this.customer = customer;
+		this.shippingAddress = shippingAddress;
+	}
+
+
+
+	public void add(ProductCart item) {
         if(item != null) {
             if(orderItems == null) {
                 orderItems = new HashSet<>();
@@ -90,14 +112,7 @@ public class Order {
         this.shippingAddress = shippingAddress;
     }
 
-    public Address getBillingAdderess() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(Address billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
+  
     public Set<ProductCart> getOrderItems() {
         return orderItems;
     }
@@ -161,4 +176,15 @@ public class Order {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderTrackingNumber=" + orderTrackingNumber + ", totalPrice=" + totalPrice
+				+ ", totalQuantity=" + totalQuantity + ", status=" + status + ", dateCreated=" + dateCreated
+				+ ", lastUpdated=" + lastUpdated + ", orderItems=" + orderItems + ", customer=" + customer
+				+ ", shippingAddress=" + shippingAddress + "]";
+	}
+    
 }

@@ -32,12 +32,12 @@
 
 
 
-<bean id="messageSource"
-        class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="passwordValidation" />
-    </bean>
-    
-    
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="passwordValidation" />
+	</bean>
+
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${database.driver}" />
@@ -48,8 +48,8 @@
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		
-		
+
+
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
@@ -60,7 +60,7 @@
 				<value>com.mph.entity.Order</value>
 
 				<value>com.mph.entity.Product</value>
-				<value>com.mph.entity.ProductCategory</value>
+				<value>com.mph.entity.Payment</value>
 
 			</list>
 		</property>
@@ -79,18 +79,18 @@
 	</bean>
 
 	<bean id="address" class="com.mph.entity.Address" />
-
 	<bean id="order" class="com.mph.entity.Order" />
-
 	<bean id="product" class="com.mph.entity.Product" />
-	<bean id="productCategory" class="com.mph.entity.ProductCategory" />
-
-
+	<bean id="payment" class="com.mph.entity.Payment" />
 	<bean id="productCart" class="com.mph.entity.ProductCart" />
-	<bean id="productCartDao"
-		class="com.mph.dao.ProductCartDaoImplementation" />
 	<bean id="customer" class="com.mph.entity.Customer" />
-	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
 
+	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
+	<bean id="productCartDao"
+		class="com.mph.dao.ProductCartDaoImpl" />
+	<bean id="addressDao" class="com.mph.dao.AddressDaoImpl" />
+	<bean id="paymentDao" class="com.mph.dao.PaymentDaoImpl" />
+
+	<bean id="productDao" class="com.mph.dao.ProductDaoImpl" />
 
 </beans>

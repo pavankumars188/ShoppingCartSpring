@@ -45,7 +45,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	   */
 	@Override
 	public List<Payment> getPaymentList() {
-		Query query = getSession().createQuery("select me from Employee me");
+		Query query = getSession().createQuery("select me from Payment me");
 		List<Payment> empList = query.list();
 		return empList;
 	}
@@ -58,5 +58,4 @@ public class PaymentDaoImpl implements PaymentDao {
 		return pay;
 	}
 
-	
 }

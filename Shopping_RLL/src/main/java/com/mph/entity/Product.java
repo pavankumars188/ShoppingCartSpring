@@ -19,12 +19,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
-    private Long productId;
-
-
-    @ManyToOne()
-    @JoinColumn(name="category_id", nullable = false)
-    private ProductCategory category;
+    private int productId;
 
     @Column(name="name")
     private String productName;
@@ -37,25 +32,27 @@ public class Product {
 
     @Column(name="image_url")
     private String imageUrl;
+    
+    @Column
+    private String category;
 
-    @Column(name="date_created")
-    @CreationTimestamp
-    private Date dateCreated;
+	public Product(int productId, String productName, String productDescription, long productPrice, String imageUrl,
+			String category) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.productPrice = productPrice;
+		this.imageUrl = imageUrl;
+		this.category = category;
+	}
 
-	public Long getProductId() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(Long productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-
-	public ProductCategory getCategory() {
-		return category;
-	}
-
-	public void setCategory(ProductCategory category) {
-		this.category = category;
 	}
 
 	public String getProductName() {
@@ -90,34 +87,20 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public Date getDateCreated() {
-		return dateCreated;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public Product(Long productId, ProductCategory category, String productName, String productDescription,
-			long productPrice, String imageUrl, Date dateCreated) {
-		super();
-		this.productId = productId;
+	public void setCategory(String category) {
 		this.category = category;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.productPrice = productPrice;
-		this.imageUrl = imageUrl;
-		this.dateCreated = dateCreated;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", category=" + category + ", productName=" + productName
-				+ ", productDescription=" + productDescription + ", productPrice=" + productPrice + ", imageUrl="
-				+ imageUrl + ", dateCreated=" + dateCreated + "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", productDescription="
+				+ productDescription + ", productPrice=" + productPrice + ", imageUrl=" + imageUrl + ", category="
+				+ category + "]";
 	}
 
 	
-    
-    
 }

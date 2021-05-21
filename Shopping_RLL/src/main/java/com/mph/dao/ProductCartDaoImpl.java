@@ -16,7 +16,7 @@ import com.mph.entity.ProductCart;
  *
  */
 @Repository
-public class ProductCartDaoImplementation implements ProductCartDao {
+public class ProductCartDaoImpl implements ProductCartDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 

@@ -15,6 +15,7 @@ import com.mph.service.PaymentService;
 
 @Controller
 @RequestMapping("/payment")
+
 public class PaymentController {
 
 	Payment payment;
@@ -33,12 +34,12 @@ public class PaymentController {
 	}*/
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public  ModelAndView sigup(@RequestParam("txttransactionID") int transactionID, @RequestParam("txtpaymenttypes") String paymenttypes,
+	public  ModelAndView sigup (@RequestParam("txtpaymenttypes") String paymenttypes,
 			@RequestParam("txttotalamount") int totalamount) {
 
-		System.out.println(transactionID + " " + paymenttypes + totalamount);
+		System.out.println(paymenttypes + totalamount);
 		payment= new Payment();
-		payment.setTransactionID(transactionID);
+	//	payment.setTransactionID(transactionID);
 		payment.setPaymenttypes(paymenttypes);
 		payment.setTotalamount(totalamount);
 		paymentService.createPayment(payment);

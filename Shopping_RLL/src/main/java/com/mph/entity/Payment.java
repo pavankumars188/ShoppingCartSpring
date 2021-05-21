@@ -5,14 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import java.util.UUID;
 import org.springframework.ui.Model;
 
 @Entity
 public class Payment {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int transactionID;
 
 	
@@ -56,6 +56,3 @@ public class Payment {
 	}
 	
 	}
-	
-
-	

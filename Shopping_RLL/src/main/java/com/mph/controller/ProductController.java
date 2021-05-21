@@ -34,7 +34,7 @@ public class ProductController {
 	}*/
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView sigup(@RequestParam("txtid") long productId, @RequestParam("txtpname") String productName,
+	public ModelAndView sigup(@RequestParam("txtid") int productId, @RequestParam("txtpname") String productName,
 			@RequestParam("txtproductDesc") String productDescription, @RequestParam("txtProPrice") int productPrice) {
 
 		System.out.println(productId + " " + productName + productDescription + productPrice);
