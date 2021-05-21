@@ -16,7 +16,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private Long addressID;
 
     @Column(name = "street")
     private String street;
@@ -34,52 +34,74 @@ public class Address {
     @PrimaryKeyJoinColumn
     private Order order;
 
-    public Order getOrder() {
-        return order;
-    }
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+	public Address(Long addressID, String street, String state, String country, String zipCode, Order order) {
+		super();
+		this.addressID = addressID;
+		this.street = street;
+		this.state = state;
+		this.country = country;
+		this.zipCode = zipCode;
+		this.order = order;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getAddressID() {
+		return addressID;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setAddressID(Long addressID) {
+		this.addressID = addressID;
+	}
 
-    public String getStreet() {
-        return street;
-    }
+	public String getStreet() {
+		return street;
+	}
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-    public String getState() {
-        return state;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public void setState(String state) {
-        this.state = state;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public String getCountry() {
+		return country;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public String getZipCode() {
-        return zipCode;
-    }
+	public String getZipCode() {
+		return zipCode;
+	}
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [addressID=" + addressID + ", street=" + street + ", state=" + state + ", country=" + country
+				+ ", zipCode=" + zipCode + ", order=" + order + "]";
+	}
+
+  
 }

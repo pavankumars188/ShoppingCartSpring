@@ -19,7 +19,7 @@ import com.mph.entity.Product;
 import com.mph.service.ProductService;
 
 @RestController
-@RequestMapping(value="/product")
+@RequestMapping(value="/Product")
 
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "false",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE}, allowedHeaders = "*")
 
@@ -28,9 +28,9 @@ public class ProductRestController {
 	@Autowired
 	ProductService productService;
 			
-	@GetMapping("/allProduct")
+	@GetMapping("/AllProduct")
 	
-	public  ResponseEntity<List<Product>> allEmployee() {
+	public  ResponseEntity<List<Product>> allProduct() {
 		
 		List<Product> li = productService.getProductList();
 		System.out.println("product List : " + li);
@@ -45,7 +45,7 @@ public class ProductRestController {
 
 	
 
-	@PostMapping("/create")
+	@PostMapping("/Create")
 	public Product createProduct(@RequestBody Product product)
 	{
 		productService.createProduct(product);
