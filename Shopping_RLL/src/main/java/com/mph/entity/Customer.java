@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Customer {
 
@@ -32,7 +34,7 @@ public class Customer {
     private Set<Order> orders = new HashSet<>();
 
 	@Column
-	private java.sql.Date DateOfBirth;
+	private String dateOfBirth;
 	
 	@Column
 	private String password;
@@ -45,7 +47,7 @@ public class Customer {
 	}
 
 	public Customer(int customerid, String customerFirstname, String customerLastname, String gender, String email,
-			Set<Order> orders, Date dateOfBirth, String password, String passwordConfirm) {
+			Set<Order> orders, String dateOfBirth, String password, String passwordConfirm) {
 		super();
 		this.customerid = customerid;
 		this.customerFirstname = customerFirstname;
@@ -53,7 +55,7 @@ public class Customer {
 		this.gender = gender;
 		this.email = email;
 		this.orders = orders;
-		DateOfBirth = dateOfBirth;
+		this.dateOfBirth = dateOfBirth;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
 	}
@@ -106,12 +108,12 @@ public class Customer {
 		this.orders = orders;
 	}
 
-	public java.sql.Date getDateOfBirth() {
-		return DateOfBirth;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(java.sql.Date dateOfBirth) {
-		DateOfBirth = dateOfBirth;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getPassword() {
@@ -133,10 +135,12 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerid=" + customerid + ", customerFirstname=" + customerFirstname + ", customerLastname="
-				+ customerLastname + ", gender=" + gender + ", email=" + email + ", orders=" + orders + ", DateOfBirth="
-				+ DateOfBirth + ", password=" + password + ", passwordConfirm=" + passwordConfirm + "]";
+				+ customerLastname + ", gender=" + gender + ", email=" + email + ", orders=" + orders + ", dateOfBirth="
+				+ dateOfBirth + ", password=" + password + ", passwordConfirm=" + passwordConfirm + "]";
 	}
+
 	
+
 	
 	
 }

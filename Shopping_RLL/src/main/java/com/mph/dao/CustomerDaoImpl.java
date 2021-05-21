@@ -52,8 +52,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public List<Customer> getCustomerList() {
 		Query query = getSession().createQuery("select me from Customer me");
-		List<Customer> cusList = query.list();
-		return cusList;
+		List<Customer> customerList = query.list();
+		return customerList;
 	}
 
 	@Override

@@ -53,14 +53,14 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.mph.entity.ProductCart</value>
+				
 				<value>com.mph.entity.Address</value>
-
+				<value>com.mph.entity.OrderItem</value>
 				<value>com.mph.entity.Customer</value>
 				<value>com.mph.entity.Order</value>
 
 				<value>com.mph.entity.Product</value>
-				<value>com.mph.entity.Payment</value>
+			
 
 			</list>
 		</property>
@@ -81,15 +81,14 @@
 	<bean id="address" class="com.mph.entity.Address" />
 	<bean id="order" class="com.mph.entity.Order" />
 	<bean id="product" class="com.mph.entity.Product" />
-	<bean id="payment" class="com.mph.entity.Payment" />
-	<bean id="productCart" class="com.mph.entity.ProductCart" />
+	
+	<bean id="orderItem" class="com.mph.entity.OrderItem" />
 	<bean id="customer" class="com.mph.entity.Customer" />
 
 	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
-	<bean id="productCartDao"
-		class="com.mph.dao.ProductCartDaoImpl" />
+	
 	<bean id="addressDao" class="com.mph.dao.AddressDaoImpl" />
-	<bean id="paymentDao" class="com.mph.dao.PaymentDaoImpl" />
+	<bean id="orderItemDao" class="com.mph.dao.OrderItemDaoImpl" />
 
 	<bean id="productDao" class="com.mph.dao.ProductDaoImpl" />
 

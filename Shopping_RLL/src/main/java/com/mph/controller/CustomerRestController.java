@@ -23,7 +23,7 @@ import com.mph.service.CustomerService;
 
 
 @RestController
-@RequestMapping(value="/CustomerRegistration")
+@RequestMapping(value="/Customer")
 
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "false",methods = { RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE}, allowedHeaders = "*")
 public class CustomerRestController {
@@ -34,7 +34,7 @@ public class CustomerRestController {
 	private static final Logger logger = Logger.getLogger("CustomerRestController.class");
 	
 	
-	@GetMapping("/allcus")
+	@GetMapping("/AllCustomer")
 	public  ResponseEntity<List<Customer>> allCustomer() {
 		logger.info("GETTING REQUEST  TO SHOW THE LIST OF CUSTOMER");
 		System.out.println(logger.getName()+"   "+ logger.getLevel());
@@ -53,45 +53,18 @@ public class CustomerRestController {
 		
 	}
 	
-	/*@GetMapping("/getCustomer/{id}")
-	public  ResponseEntity<Customer> getCustomerById(@PathVariable("id") int emid) {
-		
-		Customer cus= customerService.getCustomerById(emid);
-		System.out.println("Employee retrieved : " + emp);
-		
-		if(emp == null)
-		{
-			return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<Employee>(emp,HttpStatus.OK);
-		
-	}
-*/
-	@PostMapping("/create")
+	@PostMapping("/Register")
 	public Customer createCustomer(@RequestBody Customer customer)
 	{
 		customerService.createCustomer(customer);
 		return customer;
 	}
 	
-	/*@DeleteMapping("/delete/{id}")
-	public  ResponseEntity<List<Employee>> deleteEmployee(@PathVariable("id") int emid) {
-		
-		List<Employee> li = employeeService.deleteEmployee(emid);
-		System.out.println("Empl List : " + li);
-		
-		if(li.isEmpty())
-		{
-			return new ResponseEntity<List<Employee>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<Employee>>(li,HttpStatus.OK);
-		
-	}*/
 	
-	@PutMapping("/update")
-	public  ResponseEntity<List<Customer>> updateCustomer(@RequestBody Customer cus) {
+	@PutMapping("/Update")
+	public  ResponseEntity<List<Customer>> updateCustomer(@RequestBody Customer customer) {
 		
-		List<Customer> li = customerService.updateCustomer(cus);
+		List<Customer> li = customerService.updateCustomer(customer);
 		System.out.println("Customer List : " + li);
 		
 		if(li.isEmpty())

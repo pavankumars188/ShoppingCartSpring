@@ -23,7 +23,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "order_tracking_number")
     private String orderTrackingNumber;
@@ -34,8 +34,8 @@ public class Order {
     @Column(name = "total_quantity")
     private int totalQuantity;
 
-    @Column(name = "status")
-    private String status;
+   // @Column(name = "status")
+   // private String status;
 
     @Column(name = "date_created")
     @CreationTimestamp
@@ -45,8 +45,8 @@ public class Order {
     @UpdateTimestamp
     private Date lastUpdated;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order" )
-    private Set<ProductCart> orderItems = new HashSet<>();
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "order" )
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -66,15 +66,13 @@ public class Order {
 
 
 
-	public Order(Long id, String orderTrackingNumber, int totalPrice, int totalQuantity, String status,
-			Date dateCreated, Date lastUpdated, Set<ProductCart> orderItems, Customer customer,
-			Address shippingAddress) {
+	public Order(int id, String orderTrackingNumber, int totalPrice, int totalQuantity, Date dateCreated,
+			Date lastUpdated, Set<OrderItem> orderItems, Customer customer, Address shippingAddress) {
 		super();
 		this.id = id;
 		this.orderTrackingNumber = orderTrackingNumber;
 		this.totalPrice = totalPrice;
 		this.totalQuantity = totalQuantity;
-		this.status = status;
 		this.dateCreated = dateCreated;
 		this.lastUpdated = lastUpdated;
 		this.orderItems = orderItems;
@@ -84,7 +82,117 @@ public class Order {
 
 
 
-	public void add(ProductCart item) {
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getOrderTrackingNumber() {
+		return orderTrackingNumber;
+	}
+
+
+
+	public void setOrderTrackingNumber(String orderTrackingNumber) {
+		this.orderTrackingNumber = orderTrackingNumber;
+	}
+
+
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+
+
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+
+
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+
+
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+
+
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
+
+
+
+	public Set<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+
+
+	public void setOrderItems(Set<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+
+
+
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+
+
+	
+
+/*	public void add(ProductCart item) {
         if(item != null) {
             if(orderItems == null) {
                 orderItems = new HashSet<>();
@@ -93,98 +201,8 @@ public class Order {
             item.setOrder(this);
         }
     }
+*/
 
 
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Address getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(Address shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-  
-    public Set<ProductCart> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(Set<ProductCart> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOrderTrackingNumber() {
-        return orderTrackingNumber;
-    }
-
-    public void setOrderTrackingNumber(String orderTrackingNumber) {
-        this.orderTrackingNumber = orderTrackingNumber;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public int getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(int totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-
-
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", orderTrackingNumber=" + orderTrackingNumber + ", totalPrice=" + totalPrice
-				+ ", totalQuantity=" + totalQuantity + ", status=" + status + ", dateCreated=" + dateCreated
-				+ ", lastUpdated=" + lastUpdated + ", orderItems=" + orderItems + ", customer=" + customer
-				+ ", shippingAddress=" + shippingAddress + "]";
-	}
-    
+	
 }

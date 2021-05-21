@@ -28,7 +28,7 @@ public class ProductRestController {
 	@Autowired
 	ProductService productService;
 			
-	@GetMapping("/allemp")
+	@GetMapping("/allProduct")
 	
 	public  ResponseEntity<List<Product>> allEmployee() {
 		
