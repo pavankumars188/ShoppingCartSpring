@@ -67,7 +67,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	@Override
 	public List<Customer> updateCustomer(Customer customer) {
-		Query query = getSession().createQuery("update customer me set customerFirstname=:customerFirstname,customerLasttname=:customerLastname,gender=:gender where customerid =:customerid");
+		Query query = getSession().createQuery("update Customer me set customerFirstname=:customerFirstname,customerLastname=:customerLastname,gender=:gender where customerid =:customerid");
 		query.setParameter("customerFirstname",customer.getCustomerFirstname());
 		query.setParameter("customerLastname",customer.getCustomerLastname());
 		query.setParameter("gender",customer.getGender());
