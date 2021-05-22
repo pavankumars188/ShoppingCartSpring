@@ -1,6 +1,5 @@
 package com.mph.entity;
 
-import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Customer {
@@ -39,8 +36,7 @@ public class Customer {
 	
 	@Column
 	private String password;
-	@Column
-	private String passwordConfirm;
+	
 	
 	public Customer() {
 		super();
@@ -48,7 +44,7 @@ public class Customer {
 	}
 
 	public Customer(int customerid, String customerFirstname, String customerLastname, String gender, String email,
-			Set<Orders> orders, String dateOfBirth, String password, String passwordConfirm) {
+			Set<Orders> orders, String dateOfBirth, String password) {
 		super();
 		this.customerid = customerid;
 		this.customerFirstname = customerFirstname;
@@ -58,7 +54,7 @@ public class Customer {
 		this.orders = orders;
 		this.dateOfBirth = dateOfBirth;
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
+		
 	}
 
 	public int getCustomerid() {
@@ -125,19 +121,12 @@ public class Customer {
 		this.password = password;
 	}
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
 
 	@Override
 	public String toString() {
 		return "Customer [customerid=" + customerid + ", customerFirstname=" + customerFirstname + ", customerLastname="
 				+ customerLastname + ", gender=" + gender + ", email=" + email + ", orders=" + orders + ", dateOfBirth="
-				+ dateOfBirth + ", password=" + password + ", passwordConfirm=" + passwordConfirm + "]";
+				+ dateOfBirth + ", password=" + password + ", passwordConfirm=" + "]";
 	}
 
 	
