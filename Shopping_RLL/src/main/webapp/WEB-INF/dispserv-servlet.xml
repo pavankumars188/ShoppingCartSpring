@@ -57,7 +57,7 @@
 				<value>com.mph.entity.Address</value>
 				<value>com.mph.entity.OrderItem</value>
 				<value>com.mph.entity.Customer</value>
-				<value>com.mph.entity.Order</value>
+				<value>com.mph.entity.Orders</value>
 
 				<value>com.mph.entity.Product</value>
 			
@@ -79,7 +79,7 @@
 	</bean>
 
 	<bean id="address" class="com.mph.entity.Address" />
-	<bean id="order" class="com.mph.entity.Order" />
+	<bean id="orders" class="com.mph.entity.Orders" />
 	<bean id="product" class="com.mph.entity.Product" />
 	
 	<bean id="orderItem" class="com.mph.entity.OrderItem" />
@@ -91,5 +91,6 @@
 	<bean id="orderItemDao" class="com.mph.dao.OrderItemDaoImpl" />
 
 	<bean id="productDao" class="com.mph.dao.ProductDaoImpl" />
+	<bean id="ordersDao" class="com.mph.dao.OrdersDaoImpl" />
 
 </beans>

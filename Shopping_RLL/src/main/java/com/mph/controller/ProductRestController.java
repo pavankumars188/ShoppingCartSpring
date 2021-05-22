@@ -24,7 +24,7 @@ import com.mph.service.ProductService;
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "false",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE}, allowedHeaders = "*")
 
 public class ProductRestController {
-	
+	List<Product> product;
 	@Autowired
 	ProductService productService;
 			
@@ -51,6 +51,21 @@ public class ProductRestController {
 		productService.createProduct(product);
 		return product;
 	}
+	
+	@GetMapping("/SearchCategory/{category}")
+public  ResponseEntity<List<Product>> searchCategory(@PathVariable("category") String category) {
+		
+		List<Product> li = productService.searchByCategory(category);
+		System.out.println("product List : " + li);
+		
+		if(li.isEmpty())
+		{
+			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Product>>(li,HttpStatus.OK);
+		
+	}
+
 }
 	/*@DeleteMapping("/delete/{id}")
 	public  ResponseEntity<List<Product>> deleteEmployee(@PathVariable("id") int emid) {

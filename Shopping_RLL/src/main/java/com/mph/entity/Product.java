@@ -27,16 +27,15 @@ public class Product {
     @Column(name="description")
     private String productDescription;
 
-    @Column(name="unit_price")
-    private long productPrice;
+    
+    private int productPrice;
 
-    @Column(name="image_url")
     private String imageUrl;
     
     @Column
     private String category;
 
-	public Product(int productId, String productName, String productDescription, long productPrice, String imageUrl,
+	public Product(int productId, String productName, String productDescription, int productPrice, String imageUrl,
 			String category) {
 		super();
 		this.productId = productId;
@@ -75,7 +74,7 @@ public class Product {
 		return productPrice;
 	}
 
-	public void setProductPrice(long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 

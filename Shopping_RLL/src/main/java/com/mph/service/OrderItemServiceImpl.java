@@ -36,4 +36,10 @@ public class OrderItemServiceImpl implements OrderItemService {
 		return orderItemDao.deleteProductFromCart(pid);
 	}
 
+	@Override
+	public int getNumberofRowsInCart() {
+		// TODO Auto-generated method stub
+		return orderItemDao.getNumberofRowsInCart();
+	}
+
 }

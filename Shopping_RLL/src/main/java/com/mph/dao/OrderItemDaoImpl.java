@@ -24,24 +24,26 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	}
 
 	@Override
-	public List<OrderItem> addProduct2Cart(int pid) {
+	public List<OrderItem> addProduct2Cart(int id) {
 		Query query = getSession().createQuery(
-				"INSERT INTO Product_Cart(product_id, quantity, unit_price,image_url) SELECT product_id, quantity, unit_price,image_url FROM Product WHERE product_id =:pid");
-		query.setParameter("pid", pid);
-		List<OrderItem> cartList = query.list();
+				"INSERT INTO OrderItem(productName,unitPrice,imageUrl) SELECT p.productName,p.productPrice,p.imageUrl FROM Product p WHERE id =:id");
+		query.setParameter("id", id);
+		
+		
+	//	List<OrderItem> cartList = query.list();
 	
 
 		int noofrows = query.executeUpdate();
 		if (noofrows > 0) {
 			System.out.println("Inserted " + noofrows + "rows. ");
 		}
-		return cartList;
+		return getCartList();
 
 	}
 
 	@Override
 	public List<OrderItem> deleteProductFromCart(int pid) {
-		Query query = getSession().createQuery("delete ProductCart pc where pid =:pid");
+		Query query = getSession().createQuery("delete OrderItem pc where pid =:pid");
 		query.setParameter("pid", pid);
 		int noofrows = query.executeUpdate();
 		if (noofrows > 0) {
@@ -52,8 +54,15 @@ public class OrderItemDaoImpl implements OrderItemDao{
 
 	@Override
 	public List<OrderItem> getCartList() {
-		Query query = getSession().createQuery("select me from ProductCart me");
+		Query query = getSession().createQuery("select me from OrderItem me");
 		List<OrderItem> productList = query.list();
 		return productList;
+	}
+	@Override
+	public int getNumberofRowsInCart() {
+		// TODO Auto-generated method stub
+		Query query = getSession().createQuery("select count(*) from OrderItem me");
+		int count =(int) query.uniqueResult();
+		return count;
 	}
 }

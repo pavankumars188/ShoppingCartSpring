@@ -1,11 +1,7 @@
 package com.mph.entity;
 
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,36 +12,22 @@ import java.util.Set;
  *
  */
 @Entity
-@Table(name = "orders")
-public class Order {
+public class Orders {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private int orderID;
 
-    @Column(name = "order_tracking_number")
+
     private String orderTrackingNumber;
 
-    @Column(name = "total_price")
+    
     private int totalPrice;
 
-    @Column(name = "total_quantity")
-    private int totalQuantity;
 
-   // @Column(name = "status")
-   // private String status;
-
-    @Column(name = "date_created")
-    @CreationTimestamp
-    private Date dateCreated;
-
-    @Column(name = "last_updated")
-    @UpdateTimestamp
-    private Date lastUpdated;
-
-   @OneToMany(cascade = CascadeType.ALL, mappedBy = "order" )
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "order",fetch = FetchType.EAGER )
     private Set<OrderItem> orderItems = new HashSet<>();
 
     @ManyToOne
@@ -59,22 +41,23 @@ public class Order {
 
 
 
-    public Order() {
+    
+    
+    
+    public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public Order(int id, String orderTrackingNumber, int totalPrice, int totalQuantity, Date dateCreated,
-			Date lastUpdated, Set<OrderItem> orderItems, Customer customer, Address shippingAddress) {
+	public Orders(int orderID, String orderTrackingNumber, int totalPrice,
+			Set<OrderItem> orderItems, Customer customer, Address shippingAddress) {
 		super();
-		this.id = id;
+		this.orderID = orderID;
 		this.orderTrackingNumber = orderTrackingNumber;
 		this.totalPrice = totalPrice;
-		this.totalQuantity = totalQuantity;
-		this.dateCreated = dateCreated;
-		this.lastUpdated = lastUpdated;
+		
 		this.orderItems = orderItems;
 		this.customer = customer;
 		this.shippingAddress = shippingAddress;
@@ -82,14 +65,14 @@ public class Order {
 
 
 
-	public int getId() {
-		return id;
+	public int getOrderID() {
+		return orderID;
 	}
 
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
 	}
 
 
@@ -115,43 +98,6 @@ public class Order {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
-
-
-	public int getTotalQuantity() {
-		return totalQuantity;
-	}
-
-
-
-	public void setTotalQuantity(int totalQuantity) {
-		this.totalQuantity = totalQuantity;
-	}
-
-
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-
-
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-
-
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
-
 
 
 	public Set<OrderItem> getOrderItems() {
@@ -190,7 +136,13 @@ public class Order {
 
 
 
-	
+	@Override
+	public String toString() {
+		return "Order [orderID=" + orderID + ", orderTrackingNumber=" + orderTrackingNumber + ", totalPrice="
+				+ totalPrice + ", orderItems="
+				+ orderItems + ", customer=" + customer + ", shippingAddress=" + shippingAddress + "]";
+	}
+
 
 /*	public void add(ProductCart item) {
         if(item != null) {

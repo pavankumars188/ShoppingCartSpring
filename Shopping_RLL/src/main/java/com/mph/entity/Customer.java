@@ -32,7 +32,7 @@ public class Customer {
 	private String email;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Set<Order> orders = new HashSet<>();
+    private Set<Orders> orders = new HashSet<>();
 
 	@Column
 	private String dateOfBirth;
@@ -48,7 +48,7 @@ public class Customer {
 	}
 
 	public Customer(int customerid, String customerFirstname, String customerLastname, String gender, String email,
-			Set<Order> orders, String dateOfBirth, String password, String passwordConfirm) {
+			Set<Orders> orders, String dateOfBirth, String password, String passwordConfirm) {
 		super();
 		this.customerid = customerid;
 		this.customerFirstname = customerFirstname;
@@ -101,11 +101,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Set<Order> getOrders() {
+	public Set<Orders> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Set<Order> orders) {
+	public void setOrders(Set<Orders> orders) {
 		this.orders = orders;
 	}
 

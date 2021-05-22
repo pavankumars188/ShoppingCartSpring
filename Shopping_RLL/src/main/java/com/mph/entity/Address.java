@@ -16,7 +16,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long addressID;
+    private int addressID;
 
     @Column(name = "street")
     private String street;
@@ -32,14 +32,14 @@ public class Address {
 
     @OneToOne
     @PrimaryKeyJoinColumn
-    private Order order;
+    private Orders order;
 
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(Long addressID, String street, String state, String country, String zipCode, Order order) {
+	public Address(int addressID, String street, String state, String country, String zipCode, Orders order) {
 		super();
 		this.addressID = addressID;
 		this.street = street;
@@ -49,11 +49,11 @@ public class Address {
 		this.order = order;
 	}
 
-	public Long getAddressID() {
+	public int getAddressID() {
 		return addressID;
 	}
 
-	public void setAddressID(Long addressID) {
+	public void setAddressID(int addressID) {
 		this.addressID = addressID;
 	}
 
@@ -89,11 +89,11 @@ public class Address {
 		this.zipCode = zipCode;
 	}
 
-	public Order getOrder() {
+	public Orders getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(Orders order) {
 		this.order = order;
 	}
 

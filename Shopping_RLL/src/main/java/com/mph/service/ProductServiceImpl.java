@@ -35,6 +35,24 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 
+	@Override
+	public List<Product> updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		return productDao.updateProduct(product);
+	}
+
+	@Override
+	public List<Product> deleteProduct(int productID) {
+		// TODO Auto-generated method stub
+		return productDao.deleteProduct(productID);
+	}
+
+	@Override
+	public List<Product> searchByCategory(String category) {
+		// TODO Auto-generated method stub
+		return productDao.searchByCategory(category);
+	}
+
 	/*@Override
 	public List<Product> updateProduct(Product employee) {
 		// TODO Auto-generated method stub

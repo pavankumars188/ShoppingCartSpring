@@ -16,6 +16,6 @@ public interface AddressDao {
 	public List<Address> getAddressList();
 	public Address getAddress(Address address);
 	public List<Address> updateAddress(Address address);
-	public List<Address> deleteAdress(int addressID);
+	//public List<Address> deleteAdress(int addressID);
 
 }
