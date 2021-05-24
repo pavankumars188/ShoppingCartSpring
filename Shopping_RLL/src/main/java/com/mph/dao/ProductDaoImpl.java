@@ -48,7 +48,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> updateProduct(Product product) {
-		Query query = getSession().createQuery("update Product me set name=:name,description=:description,unit_price=:unit_price,image_url=:image_url,category=:category where id =:id");
+		Query query = getSession().createQuery("update Product me set productName=:name,productPrice=:unit_price,imageUrl=:image_url,category=:category where productId =:id");
 		query.setParameter("name",product.getProductName());
 		query.setParameter("description",product.getCategory());
 		query.setParameter("unit_price",product.getProductPrice());
@@ -65,7 +65,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> deleteProduct(int productID) {
-		Query query = getSession().createQuery("delete Product me where id =:id");
+		Query query = getSession().createQuery("delete Product me where productId =:id");
 		query.setParameter("id", productID);
 		int noofrows = query.executeUpdate();
 		if (noofrows > 0) {

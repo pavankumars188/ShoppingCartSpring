@@ -1,11 +1,6 @@
 package com.mph.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Table(name="product")
@@ -18,16 +13,12 @@ public class Product {
     
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id")
+
     private int productId;
 
-    @Column(name="name")
+  
     private String productName;
 
-    @Column(name="description")
-    private String productDescription;
-
-    
     private int productPrice;
 
     private String imageUrl;
@@ -35,12 +26,12 @@ public class Product {
     @Column
     private String category;
 
-	public Product(int productId, String productName, String productDescription, int productPrice, String imageUrl,
+	public Product(int productId, String productName, int productPrice, String imageUrl,
 			String category) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
-		this.productDescription = productDescription;
+		
 		this.productPrice = productPrice;
 		this.imageUrl = imageUrl;
 		this.category = category;
@@ -62,13 +53,7 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
+	
 
 	public long getProductPrice() {
 		return productPrice;
@@ -96,8 +81,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productDescription="
-				+ productDescription + ", productPrice=" + productPrice + ", imageUrl=" + imageUrl + ", category="
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice + ", imageUrl=" + imageUrl + ", category="
 				+ category + "]";
 	}
 

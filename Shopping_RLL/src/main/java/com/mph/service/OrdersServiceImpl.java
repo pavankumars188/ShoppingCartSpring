@@ -45,5 +45,11 @@ public class OrdersServiceImpl implements OrdersService{
 	public List<Orders> deleteOrder(int oid) {
 		
 		return orderDao.deleteOrder(oid);
+	}
+
+	@Override
+	public String payOrder(int oid) {
+		// TODO Auto-generated method stub
+		return orderDao.payOrder(oid);
 	}	
 }

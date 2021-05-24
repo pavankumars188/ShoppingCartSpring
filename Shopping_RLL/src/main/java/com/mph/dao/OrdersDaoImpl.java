@@ -66,10 +66,11 @@ public class OrdersDaoImpl implements OrdersDao {
 		
 		@Override
 		public List<Orders> updateOrder(Orders order) {
-			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber,TotalPrice=:TotalPrice where orderID =:id");
+			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber,totalPrice=:totalPrice,address=:address where orderID =:id");
 			
 			query.setParameter("orderTrackingNumber",order.getOrderTrackingNumber());
 			query.setParameter("totalPrice",order.getTotalPrice());
+			query.setParameter("address",order.getAddress());
 			
 			
 			
@@ -82,13 +83,24 @@ public class OrdersDaoImpl implements OrdersDao {
 
 		@Override
 		public List<Orders> deleteOrder(int oid) {
-			Query query = getSession().createQuery("delete Orders me where oid =:oid");
+			Query query = getSession().createQuery("delete Orders me where orderID =:oid");
 			query.setParameter("oid", oid);
 			int noofrows = query.executeUpdate();
 			if (noofrows > 0) {
 				System.out.println("Deleted " + noofrows + "rows. ");
 			}
 			return getOrderList();
+		}
+
+		@Override
+		public String payOrder(int oid) {
+			// TODO Auto-generated method stub
+			String orderNumber = generateOrderTrackingNumber();
+			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber where orderID =:oid");
+			query.setParameter("oid", oid);
+			query.setParameter("orderTrackingNumber",orderNumber);
+			query.executeUpdate();
+			return orderNumber;
 		}
 
 }

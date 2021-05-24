@@ -23,69 +23,75 @@ import com.mph.service.OrdersService;
 
 @RestController
 @RequestMapping("/Orders")
-@CrossOrigin(origins = "http://localhost:4200",allowCredentials = "false",methods = { RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE}, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "false", methods = { RequestMethod.GET,
+		RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE }, allowedHeaders = "*")
 public class OrdersRestController {
-	
+
 	@Autowired
 	OrdersService orderService;
-	
+
 	private static final Logger logger = Logger.getLogger("OrderRestController.class");
-	
-	
+
 	@GetMapping("/AllOrders")
-	public  ResponseEntity<List<Orders>> allOrder() {
+	public ResponseEntity<List<Orders>> allOrder() {
 		logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE ORDER DETAILS");
-		System.out.println(logger.getName()+"   "+ logger.getLevel());
-		
-		
+		System.out.println(logger.getName() + "   " + logger.getLevel());
+
 		PropertyConfigurator.configure(OrdersRestController.class.getClassLoader().getResource("log4j.properties"));
 		logger.info("Log4j appender configuration is successfull !!!!");
 		List<Orders> li = orderService.getOrderList();
 		System.out.println("Ord List : " + li);
-		
-		if(li.isEmpty())
-		{
+
+		if (li.isEmpty()) {
 			return new ResponseEntity<List<Orders>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Orders>>(li,HttpStatus.OK);
-		
+		return new ResponseEntity<List<Orders>>(li, HttpStatus.OK);
+
 	}
-	
-	
 
 	@PostMapping("/Add")
-	public Orders addOrder(@RequestBody Orders order)
-	{
+	public Orders addOrder(@RequestBody Orders order) {
 		orderService.addOrder(order);
 		return order;
 	}
-	
+
 	@DeleteMapping("/Delete/{id}")
-	public  ResponseEntity<List<Orders>> deleteOrder(@PathVariable("id") int oid) {
-		
+	public ResponseEntity<List<Orders>> deleteOrder(@PathVariable("id") int oid) {
+
 		List<Orders> li = orderService.deleteOrder(oid);
 		System.out.println("Ord List : " + li);
-		
-		if(li.isEmpty())
-		{
+
+		if (li.isEmpty()) {
 			return new ResponseEntity<List<Orders>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Orders>>(li,HttpStatus.OK);
-		
+		return new ResponseEntity<List<Orders>>(li, HttpStatus.OK);
+
 	}
-	
+
 	@PutMapping("/Update")
-	public  ResponseEntity<List<Orders>> updateOrder(@RequestBody Orders ord) {
-		
+	public ResponseEntity<List<Orders>> updateOrder(@RequestBody Orders ord) {
+
 		List<Orders> li = orderService.updateOrder(ord);
 		System.out.println("Ord List : " + li);
-		
-		if(li.isEmpty())
-		{
+
+		if (li.isEmpty()) {
 			return new ResponseEntity<List<Orders>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Orders>>(li,HttpStatus.OK);
-		
+		return new ResponseEntity<List<Orders>>(li, HttpStatus.OK);
+
 	}
-	
+
+	@PutMapping("/Pay")
+	public ResponseEntity<List<Orders>> payOrder(@PathVariable("id") int oid) {
+
+		String li = orderService.payOrder(oid);
+		
+
+		if (li.isEmpty()) {
+			return new ResponseEntity<List<Orders>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Orders>>(HttpStatus.OK);
+
+	}
+
 }

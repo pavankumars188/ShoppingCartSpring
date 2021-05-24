@@ -17,7 +17,6 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int orderID;
 
 
@@ -35,14 +34,8 @@ public class Orders {
     private Customer customer;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
-    private Address shippingAddress;
+ private String address;
 
-
-
-    
-    
     
     public Orders() {
 		super();
@@ -50,19 +43,16 @@ public class Orders {
 	}
 
 
-
-	public Orders(int orderID, String orderTrackingNumber, int totalPrice,
-			Set<OrderItem> orderItems, Customer customer, Address shippingAddress) {
+	public Orders(int orderID, String orderTrackingNumber, int totalPrice, Set<OrderItem> orderItems, Customer customer,
+			String address) {
 		super();
 		this.orderID = orderID;
 		this.orderTrackingNumber = orderTrackingNumber;
 		this.totalPrice = totalPrice;
-		
 		this.orderItems = orderItems;
 		this.customer = customer;
-		this.shippingAddress = shippingAddress;
+		this.address = address;
 	}
-
 
 
 	public int getOrderID() {
@@ -70,11 +60,9 @@ public class Orders {
 	}
 
 
-
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
-
 
 
 	public String getOrderTrackingNumber() {
@@ -82,17 +70,14 @@ public class Orders {
 	}
 
 
-
 	public void setOrderTrackingNumber(String orderTrackingNumber) {
 		this.orderTrackingNumber = orderTrackingNumber;
 	}
 
 
-
 	public int getTotalPrice() {
 		return totalPrice;
 	}
-
 
 
 	public void setTotalPrice(int totalPrice) {
@@ -105,11 +90,9 @@ public class Orders {
 	}
 
 
-
 	public void setOrderItems(Set<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-
 
 
 	public Customer getCustomer() {
@@ -117,31 +100,28 @@ public class Orders {
 	}
 
 
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
 
-
-	public Address getShippingAddress() {
-		return shippingAddress;
+	public String getAddress() {
+		return address;
 	}
 
 
-
-	public void setShippingAddress(Address shippingAddress) {
-		this.shippingAddress = shippingAddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
 
 
 	@Override
 	public String toString() {
-		return "Order [orderID=" + orderID + ", orderTrackingNumber=" + orderTrackingNumber + ", totalPrice="
-				+ totalPrice + ", orderItems="
-				+ orderItems + ", customer=" + customer + ", shippingAddress=" + shippingAddress + "]";
+		return "Orders [orderID=" + orderID + ", orderTrackingNumber=" + orderTrackingNumber + ", totalPrice="
+				+ totalPrice + ", orderItems=" + orderItems + ", customer=" + customer + ", address=" + address + "]";
 	}
+
+
 
 
 /*	public void add(ProductCart item) {

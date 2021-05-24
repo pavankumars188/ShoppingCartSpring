@@ -38,7 +38,7 @@ public class OrderItemRestController {
 		System.out.println(logger.getName()+"   "+ logger.getLevel());
 		
 		
-		PropertyConfigurator.configure(AddressRestController.class.getClassLoader().getResource("log4j.properties"));
+		PropertyConfigurator.configure(OrderItemRestController.class.getClassLoader().getResource("log4j.properties"));
 		logger.info("Log4j appender configuration is successfull !!!!");
 		List<OrderItem> li = orderItemService.getCartList();
 		if (li.isEmpty()) {

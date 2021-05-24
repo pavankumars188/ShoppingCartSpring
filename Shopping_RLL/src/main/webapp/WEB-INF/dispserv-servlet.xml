@@ -54,7 +54,6 @@
 		<property name="annotatedClasses">
 			<list>
 				
-				<value>com.mph.entity.Address</value>
 				<value>com.mph.entity.OrderItem</value>
 				<value>com.mph.entity.Customer</value>
 				<value>com.mph.entity.Orders</value>
@@ -78,7 +77,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="address" class="com.mph.entity.Address" />
+	
 	<bean id="orders" class="com.mph.entity.Orders" />
 	<bean id="product" class="com.mph.entity.Product" />
 	
@@ -87,7 +86,7 @@
 
 	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
 	
-	<bean id="addressDao" class="com.mph.dao.AddressDaoImpl" />
+	
 	<bean id="orderItemDao" class="com.mph.dao.OrderItemDaoImpl" />
 
 	<bean id="productDao" class="com.mph.dao.ProductDaoImpl" />
