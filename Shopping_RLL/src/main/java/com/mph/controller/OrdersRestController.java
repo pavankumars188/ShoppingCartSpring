@@ -82,9 +82,9 @@ public class OrdersRestController {
 	}
 
 	@PutMapping("/Pay")
-	public ResponseEntity<List<Orders>> payOrder(@PathVariable("id") int oid) {
+	public ResponseEntity<List<Orders>> payOrder(@RequestBody Orders ord) {
 
-		String li = orderService.payOrder(oid);
+		String li = orderService.payOrder(ord);
 		
 
 		if (li.isEmpty()) {

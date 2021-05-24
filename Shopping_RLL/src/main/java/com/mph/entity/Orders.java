@@ -4,6 +4,7 @@ package com.mph.entity;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * 
@@ -42,7 +43,12 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
+    public String generateOrderTrackingNumber() {
+        String uuid = UUID.randomUUID().toString();
+        System.out.println(uuid);
+        return  uuid;
 
+    }
 	public Orders(int orderID, String orderTrackingNumber, int totalPrice, Set<OrderItem> orderItems, Customer customer,
 			String address) {
 		super();

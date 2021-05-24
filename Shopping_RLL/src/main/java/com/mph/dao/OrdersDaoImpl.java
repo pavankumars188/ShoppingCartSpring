@@ -20,12 +20,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		// TODO Auto-generated constructor stub
 	}
 	
-	 private String generateOrderTrackingNumber() {
-	        String uuid = UUID.randomUUID().toString();
-	        System.out.println(uuid);
-	        return  uuid;
-
-	    }
+	 
 
 		@Autowired
 		private SessionFactory sessionFactory;
@@ -66,11 +61,11 @@ public class OrdersDaoImpl implements OrdersDao {
 		
 		@Override
 		public List<Orders> updateOrder(Orders order) {
-			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber,totalPrice=:totalPrice,address=:address where orderID =:id");
+			Query query = getSession().createQuery("update Orders me set totalPrice=:totalPrice,address=:address where orderID =:id");
 			
-			query.setParameter("orderTrackingNumber",order.getOrderTrackingNumber());
 			query.setParameter("totalPrice",order.getTotalPrice());
 			query.setParameter("address",order.getAddress());
+			query.setParameter("id",order.getOrderID());
 			
 			
 			
@@ -93,14 +88,18 @@ public class OrdersDaoImpl implements OrdersDao {
 		}
 
 		@Override
-		public String payOrder(int oid) {
-			// TODO Auto-generated method stub
-			String orderNumber = generateOrderTrackingNumber();
-			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber where orderID =:oid");
-			query.setParameter("oid", oid);
-			query.setParameter("orderTrackingNumber",orderNumber);
-			query.executeUpdate();
-			return orderNumber;
+		public String payOrder(Orders order) {
+			Query query = getSession().createQuery("update Orders me set orderTrackingNumber=:orderTrackingNumber where orderID =:id");
+			String uuid = order.generateOrderTrackingNumber();
+			query.setParameter("orderTrackingNumber",uuid);
+			query.setParameter("id",order.getOrderID());
+			
+			
+			
+			int noofrows = query.executeUpdate();
+			if (noofrows > 0) {
+				System.out.println("Updated " + noofrows + "rows. ");
+			}
+			return uuid;
 		}
-
 }

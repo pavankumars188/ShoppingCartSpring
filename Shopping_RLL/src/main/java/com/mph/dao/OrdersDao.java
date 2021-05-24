@@ -11,7 +11,7 @@ public interface OrdersDao {
 	public Orders getOrder(Orders order);
 	public List<Orders> updateOrder(Orders order);
 	public List<Orders> deleteOrder(int oid);
-	public String payOrder(int oid);
+	public String payOrder(Orders order);
 	
 	
 }
