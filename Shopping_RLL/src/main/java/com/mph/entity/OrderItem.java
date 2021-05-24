@@ -1,9 +1,12 @@
 package com.mph.entity;
 
-
-import javax.persistence.*;
-
-import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class OrderItem {
@@ -18,13 +21,6 @@ public class OrderItem {
 
     
     private int unitPrice;
-
-
- //   private int quantity;
-
-    
-  //  private int productId;
-
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -44,8 +40,6 @@ public class OrderItem {
 		this.productName = productName;
 		this.imageUrl = imageUrl;
 		this.unitPrice = unitPrice;
-		//this.quantity = quantity;
-	//	this.productId = productId;
 		this.order = order;
 	}
 
@@ -89,27 +83,7 @@ public class OrderItem {
 		this.unitPrice = unitPrice;
 	}
 
-	/*
-	public int getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
-	public int getProductId() {
-		return productId;
-	}
-
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
-*/
+	
 	public Orders getOrder() {
 		return order;
 	}
@@ -120,8 +94,11 @@ public class OrderItem {
 	}
 
 
-	
-
+	@Override
+	public String toString() {
+		return "OrderItem [orderID=" + orderID + ", productName=" + productName + ", imageUrl=" + imageUrl
+				+ ", unitPrice=" + unitPrice + ", order=" + order + "]";
+	}
 
 
 }
