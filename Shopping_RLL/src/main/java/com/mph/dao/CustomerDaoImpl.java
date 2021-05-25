@@ -71,7 +71,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		query.setParameter("customerFirstname",customer.getCustomerFirstname());
 		query.setParameter("customerLastname",customer.getCustomerLastname());
 		query.setParameter("gender",customer.getGender());
-		query.setParameter("customerid",customer.getCustomerid());
+		query.setParameter("customerid",customer.getCustomerId());
 		
 		int noofrows = query.executeUpdate();
 		if (noofrows > 0) {
@@ -90,23 +90,25 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		return getEmployeeList();
 	}
-
+*/
+	
 	@Override
-	public Customer getCustomerById(int customerid) {
+	public Customer getCustomerById(int customerId) {
 		
-		Query query = getSession().createQuery("from Employee me where eid =:eid");
-		query.setParameter("eid", eid);
-		Employee emp = (Employee) query.uniqueResult();
+		Query query = getSession().createQuery("from Customer me where customerId =:eid");
+		query.setParameter("eid", customerId);
+		Customer emp = (Customer) query.uniqueResult();
 		
 		return emp;
 	}
+	/*
 	@Override
 	public Employee search(String name) {
 		Query query = getSession().createQuery("select me Employee me where fname =:fname");
 		query.setParameter("fname", name);
 		Employee emp = (Employee) query.uniqueResult();
 		return emp;
-	}
-*/
+	}*/
+
 
 }

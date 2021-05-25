@@ -12,19 +12,24 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.mph.controller.CustomerRestController;
+import com.mph.controller.ProductRestController;
 import com.mph.entity.Customer;
 import com.mph.entity.Product;
 import com.mph.service.CustomerServiceImpl;
 import com.mph.service.ProductServiceImpl;
 
 import junit.framework.Assert;
-
+/**
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration(classes= {AppConfig.class})
 public class ProductRestControllerTest {
 
 	@InjectMocks
-	ProductRestControllerTest productRestController;
+	ProductRestController productRestController;
 	
 	@Mock
 	ProductServiceImpl productService;
@@ -32,13 +37,13 @@ public class ProductRestControllerTest {
 	@Test
 	public void testAllProduct() {
 		Product product = new Product();
-		List<Product> product1 = new ArrayList<>();
-		product1.add(product);
-		Assert.assertNotNull(productRestController.p());
-		Assert.assertEquals(204, productRestController.allCustomer().getStatusCodeValue());
-		when(productService.getCustomerList()).thenReturn(customer);
-		Assert.assertNotNull(productRestController.allCustomer());
-		Assert.assertEquals(1, productRestController.allCustomer().getBody().size());
+		List<Product> products = new ArrayList<>();
+		products.add(product);
+		Assert.assertNotNull(productRestController.allProduct());
+		Assert.assertEquals(204, productRestController.allProduct().getStatusCodeValue());
+		when(productService.getProductList()).thenReturn(products);
+		Assert.assertNotNull(productRestController.allProduct());
+		Assert.assertEquals(1, productRestController.allProduct().getBody().size());
 
 	}
 

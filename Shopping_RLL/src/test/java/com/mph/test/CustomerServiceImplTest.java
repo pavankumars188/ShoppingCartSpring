@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.mph.controller.CustomerRestController;
+import com.mph.dao.CustomerDao;
 import com.mph.entity.Customer;
 import com.mph.service.CustomerServiceImpl;
 
@@ -22,22 +23,31 @@ import junit.framework.Assert;
 public class CustomerServiceImplTest {
 
 	@InjectMocks
-	CustomerServiceImplTest customerServiceImpl;
-	
-	@Mock
 	CustomerServiceImpl customerService;
 	
+	@Mock
+	CustomerDao customerDao;
+	
 	@Test
-	public void testAllCustomer() {
-		Customer cust = new Customer();
-		List<Customer> customer = new ArrayList<>();
-		customer.add(cust);
-		Assert.assertNotNull(customerRestController.allCustomer());
-		Assert.assertEquals(204, customerRestController.allCustomer().getStatusCodeValue());
-		when(customerService.getCustomerList()).thenReturn(customer);
-		Assert.assertNotNull(customerRestController.allCustomer());
-		Assert.assertEquals(1, customerRestController.allCustomer().getBody().size());
+	public void testGetCustomerList() {
+		Customer cus = new Customer(101, "Prasanna", "Palanivel","Male", "chandra@gmail.com",null,"04-05-1999","Password");
+		List<Customer> customers = new ArrayList<>();
+		customers.add(cus);
+		when(customerDao.getCustomerList()).thenReturn(customers);
+		Assert.assertNotNull(customerService.getCustomerList());
+		Assert.assertEquals(1, customerService.getCustomerList().size());
 
 	}
+	@Test
+	public void getCustomerById() {
+		Customer cus = new Customer(101, "Prasanna", "Palanivel","Male", "prasanna@gmail.com",null,"04-05-1999","Password");
 
+		Customer cus1 = new Customer(102, "Balaji", "Palanivel","Male", "balaji@gmail.com",null,"13-05-1997","Password");
+
+		when(customerDao.getCustomerById(101)).thenReturn(cus);
+		when(customerDao.getCustomerById(102)).thenReturn(cus1);
+		Assert.assertEquals("Prasanna", customerService.getCustomerById(101).getCustomerFirstname());
+		Assert.assertEquals("Palanivel", customerService.getCustomerById(102).getCustomerLastname());
+
+	}
 }

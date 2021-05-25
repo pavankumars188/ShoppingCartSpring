@@ -17,7 +17,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int customerid;
+	private int customerId;
 
 	@Column
 	private String customerFirstname;
@@ -43,10 +43,10 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(int customerid, String customerFirstname, String customerLastname, String gender, String email,
+	public Customer(int customerId, String customerFirstname, String customerLastname, String gender, String email,
 			Set<Orders> orders, String dateOfBirth, String password) {
 		super();
-		this.customerid = customerid;
+		this.customerId = customerId;
 		this.customerFirstname = customerFirstname;
 		this.customerLastname = customerLastname;
 		this.gender = gender;
@@ -57,12 +57,12 @@ public class Customer {
 		
 	}
 
-	public int getCustomerid() {
-		return customerid;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
+	public void setCustomerid(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getCustomerFirstname() {
@@ -124,7 +124,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [customerid=" + customerid + ", customerFirstname=" + customerFirstname + ", customerLastname="
+		return "Customer [customerid=" + customerId + ", customerFirstname=" + customerFirstname + ", customerLastname="
 				+ customerLastname + ", gender=" + gender + ", email=" + email + ", orders=" + orders + ", dateOfBirth="
 				+ dateOfBirth + ", password=" + password + ", passwordConfirm=" + "]";
 	}

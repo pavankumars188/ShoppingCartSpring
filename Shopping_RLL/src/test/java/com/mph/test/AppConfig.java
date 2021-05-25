@@ -1,6 +1,10 @@
 package com.mph.test;
 
-
+/**
+ * 
+ * @author Prasanna_Palanivel
+ *
+ */
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;

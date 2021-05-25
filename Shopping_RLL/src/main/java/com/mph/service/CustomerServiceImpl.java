@@ -44,6 +44,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerDao.updateCustomer(customer);
 	}
 
+	@Override
+	public Customer getCustomerById(int customerId) {
+		// TODO Auto-generated method stub
+		return customerDao.getCustomerById(customerId);
+	}
+
 
 
 	
