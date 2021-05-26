@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" /> 
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<form (register)="f.form.valid && createCustomer()" #f="ngForm">
+<div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome To</h3>
+                        <p><b>LOAN MANAGEMENT SYSTEM</b></p>
+                        
+                    </div>
+                    <div class="col-md-9 register-right">
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Create Your Account</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                             </div>
+                                            <input name="FirstName" required #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched" class="form-control" placeholder="First name" type="text" [(ngModel)]="customerDetails.firstName">
+                                            <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched"> FirstName is required</small> 
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                             </div>
+                                            <input name="LastName" required #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" class="form-control" placeholder="Last name" type="text" [(ngModel)]="customerDetails.lastName">
+                                            <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">LastName is required</small> 
+                                        </div> <!-- form-group// -->
+										<div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                             </div>
+                                            <input name="email" required email #email="ngModel" [class.is-invalid]="email.invalid && email.touched"class="form-control" placeholder="Email address" type="email"  [(ngModel)]="customerDetails.emailId">
+                                            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is Invalid</small> 
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                            </div>
+                                            <input class="form-control"required #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Create password" type="password" [(ngModel)]="customerDetails.password">
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                            </div>
+                                            <input class="form-control"  required #confirmpassword="ngModel" [class.is-invalid]="confirmpassword.invalid && confirmpassword.touched"  pattern="{{customerDetails.password}}"#cpass="ngModel"  placeholder="Confirm password" type="password"[(ngModel)]="customerDetails.confirmpassword">
+                                            <small class="text-danger" *ngIf="confirmpassword.touched && confirmpassword.errors?.required">confirm password is required</small>
+                                            <small class="text-danger" *ngIf="f.submitted && cpass.errors?.pattern">password and confirm password does not match</small>
+                                        </div> 
+                                       
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fas fa-home"></i> </span>
+                                            </div>
+                                            <input class="form-control" placeholder="Enter Door Number" type="text" [(ngModel)]="address.dNo">
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-road" aria-hidden="true"></i> </span>
+                                            </div>
+                                            <input class="form-control" placeholder="Enter Street Name " type="text" [(ngModel)]="address.streetName">
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fas fa-city"></i> </span>
+                                            </div>
+                                            <input class="form-control" placeholder="Enter City " type="text" [(ngModel)]="address.city">
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fas fa-map-marker-alt"></i> </span>
+                                            </div>
+                                            <input class="form-control"  placeholder="Enter pincode " type="text" [(ngModel)]="address.pincode">
+                                        </div> 
+                                        
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fas fa-university"></i> </span>
+                                            </div>
+                                            <input  name="accountNumber" class="form-control"  #accountNumber="ngModel" pattern="^\d{15}$" required [class.is-invalid]="accountNumber.invalid && accountNumber.touched"  class="form-control"   placeholder="Account number" type="text" [(ngModel)]="customerDetails.accountNumber" >
+                                            <!--<small class="text-danger" [class.d-none]="number.valid || number.untouched">Account Number must be 15 digits</small>-->
+                                            <div *ngIf="accountNumber.errors && (accountNumber.invalid || accountNumber.touched)">
+                                                <small class="text-danger" *ngIf="accountNumber.errors.required">Account number is required</small>
+                                                <small class="text-danger" *ngIf="accountNumber.errors.pattern">Account number  must be 15 digits</small>
+                                               </div>
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                            </div>
+                                            <select class="custom-select" style="max-width: 120px;" >
+                                                <option selected="">+91</option>
+                                                <option value="1">+0</option>
+                                               
+                                            </select>
+                                            <input name="phone" #phone="ngModel" pattern="^\d{10}$" required [class.is-invalid]="phone.invalid && phone.touched"  class="form-control" placeholder="Phone number" type="text" [(ngModel)]="customerDetails.phoneNumber">
+                                            <!--<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required must be 10 digits</small>-->
+                                           <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                                            <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
+                                            <small class="text-danger" *ngIf="phone.errors.pattern">Phone number  must be 10 digits</small>
+                                           </div>
+                                        </div> <!-- form-group// -->
+                                    
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-id-card" aria-hidden="true"></i> </span>
+                                            </div>
+                                            <input name="aadharNumber" class="form-control"  #aadharNumber="ngModel" pattern="^\d{12}$" required [class.is-invalid]="aadharNumber.invalid && aadharNumber.touched" placeholder="Aadhar number" type="text" [(ngModel)]="customerDetails.aadharNumber">
+                                            <!--<small class="text-danger" [class.d-none]="number.valid || number.untouched">Aadhar number  must be 12 digits</small>-->
+                                            <div *ngIf="aadharNumber.errors && (aadharNumber.invalid || aadharNumber.touched)">
+                                                <small class="text-danger" *ngIf="aadharNumber.errors.required">Account number is required</small>
+                                                <small class="text-danger" *ngIf="aadharNumber.errors.pattern">Account number  must be 12 digits</small>
+                                               </div> 
+                                            </div> 
+
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fab fa-nutritionix"></i> </span>
+                                            </div>
+                                            <input class="form-control" placeholder="Enter Age" type="text" [(ngModel)]="customerDetails.age">
+                                        </div> 
+                                       
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fab fa-accessible-icon"></i> </span>
+                                            </div>
+                                            <input class="form-control" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" placeholder="Enter Nominee Name" type="text" [(ngModel)]="customerDetails.nomineeName">
+                                        </div> 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                                            </div>
+                                            <input class="form-control" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" placeholder="Nominee Relation" type="text" [(ngModel)]="customerDetails.relation">
+                                        </div> 
+                                       
+
+                                       
+                                            <label for="profession">Choose Profession : </label>
+
+                                            <select [(ngModel)]="selectedLevel" (change)=selected()>
+                                                <option value="student">Student</option>
+                                                <option value="employee">Employee</option>
+                                                <option value="business">Business</option>
+                                              </select>
+                                           
+                                              <h2 *ngIf="student ;then thenBlock;else elseBlock"></h2>
+
+                                              <ng-template #thenBlock>
+                                                 <input type="text" placeholder="Enter Stipend">
+                                              </ng-template>
+
+                                              <ng-template #elseBlock>
+                                               
+                                                    <input type="text" placeholder="Enter Salary">
+                                                
+                                            </ng-template>
+                                            <!-- <h2 *ngIf="business ;then thenBlock;"></h2>
+
+                                              <ng-template #thenBlock>
+                                                 <input type="text" placeholder="Enter Income">
+                                              </ng-template> -->
+                                              
+                                            <label for="Loan">Choose Type Of Loan :</label>
+
+                                      <select name="Loan" id="Loan" >
+                                              <option value="Gold">Gold</option>
+                                              <option value="Education">Education</option>
+                                              <option value="Home">Home</option>
+                                              <option value="Start-Up">Start-Up</option>
+
+                                            </select> 
+
+                                            <label for="Term Of Loan">Choose Term Of Loan :</label>
+
+                                            <select name="Term Of Loan" id="Term Of Loan" >
+                                              <option value="1">1-3</option>
+                                              <option value="5-10">3-6</option>
+                                              <option value="6-10">6-10</option>
+                                            
+                                            </select> 
+                                            <form>
+                                                <div class="form-group">
+                                                  <label for="exampleFormControlFile1"><b>Surety :</b></label>
+                                                  <input type="file" class="form-control-file" id="exampleFormControlFile1" >
+                                                </div>
+                                              </form>
+                                          
+                                             
+                                              <div>
+                                                <button class="register" (click)="createCustomer()">Register</button>
+                                              </div> 
+                                              <a routerLink="/login" class="btn btn-primary" role="button">Login</a> 
+                                             
+                                       <!-- <a routerLink="/register" (click)="addCustomer()" class="btn btn-primary" role="button">Create Account</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+			<router-outlet></router-outlet>
+
+    </form>
+		</body>
+       
+</html>
+
